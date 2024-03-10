@@ -1,5 +1,5 @@
 # Use a lightweight Python image
-FROM python:3.8-alpine
+FROM arm64v8/python:3.13.0a4-bookworm
 
 # Set the working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip setuptools && pip install -r requirements.txt
 
 # Copy the application files
 COPY app.py .
